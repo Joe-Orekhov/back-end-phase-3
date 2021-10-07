@@ -70,8 +70,8 @@ class ApplicationController < Sinatra::Base
     new_match.to_json
   end
 
-  patch "/tutor/:id/accepts_request" do
-    Match.find(params[:id]).update(matched:true).to_json
+  patch "/tutors/requests/:id" do
+    Match.find(params[:id]).update(params).to_json
   end
 
   patch "/students/:id/profile_edit" do
