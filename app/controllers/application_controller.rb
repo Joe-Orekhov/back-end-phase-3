@@ -2,7 +2,7 @@ class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
 
   get "/tutors/:id/requests" do
-    Match.where(tutor_id: params[:id]).to_json
+    Match.where(tutor_id: params[:id]).where(matched: false).to_json
   end
 
   get "/tutors/:id/profile" do
@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/tutors/:id/students" do
-    Match.where(tutor_id: params[:id]).where(matched: true).map(&:student).to_json
+    Match.where(tutor_id: params[:id]).where(matched: true).to_json
   end
 
   get "/students/tutors" do
@@ -22,7 +22,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/students/:id/tutors" do
-    Match.where(student_id: params[:id]).where(matched:true).map(&:tutor).to_json
+    Match.where(student_id: params[:id]).where(matched: true).to_json
   end
 
   post "/tutor_sign_up" do
