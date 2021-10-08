@@ -96,11 +96,11 @@ class ApplicationController < Sinatra::Base
     Match.find(params[:id]).destroy.to_json
   end
 
-  delete "tutors/delete_request/:id" do
+  delete "/tutors/delete-request/:id" do
     Match.find(params[:id]).destroy.to_json
   end
 
-  delete "students/delete_match/:id" do
+  delete "/students/delete-match/:id" do
     Match.find(params[:id]).destroy.to_json
   end
 
