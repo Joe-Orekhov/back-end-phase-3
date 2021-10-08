@@ -1,6 +1,16 @@
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
 
+  get "/students" do 
+    allStudents = Student.all
+    allStudents.to_json
+  end
+
+  get "/tutors" do 
+    allTutor = Tutor.all
+    allTutor.to_json
+  end
+
   get "/tutors/:id/requests" do
     Match.where(tutor_id: params[:id]).to_json
   end
@@ -74,7 +84,7 @@ class ApplicationController < Sinatra::Base
     Match.find(params[:id]).update(matched:true).to_json
   end
 
-  patch "/students/:id/profile_edit" do
+  patch "/students/:id/profile-edit" do
     Student.find(params[:id]).update(params).to_json
   end
 
